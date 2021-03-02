@@ -20,17 +20,16 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
       return res.status(400)
                 .send(`Please Provide a URL of an image`);
     }
+
     try{
+
     let image_file = await filterImageFromURL(url);
     if (image_file==="error"){
         res.status(415).send('not an image, please try another url');
     }else
     res.status(200).sendFile(image_file, () =>{deleteLocalFiles([image_file])});
     
-
-
     }
-
   catch(e){
   console.log(e);
   return res.status(500);
