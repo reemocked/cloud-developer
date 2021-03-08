@@ -25,7 +25,7 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
 
     let image_file = await filterImageFromURL(url);
     if (image_file==="error"){
-        res.status(415).send('not an image, please try another url');
+        res.status(422).send('not an image, please try another url');
     }else
     res.status(200).sendFile(image_file, () =>{deleteLocalFiles([image_file])});
     
